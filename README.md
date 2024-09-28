@@ -28,6 +28,9 @@ Instructions
 | SRM REG, #Addr | 0x43 | 4    | ?      | Subtracts a value in memory to a register and stores the result in the register (Subtract Register and Memory value) 
 | ARR REGA, REGB | 0x44 | 3    | ?      | Adds the value from register B to register A and stores the result in the register A(Add Register and Register) 
 | SRR REGA, REGB | 0x45 | 3    | ?      | Subtracts register B from register A and stores the result in the register A(Subtract Register and Register) 
+| HLT            | 0xFE | 1    | ?      | Halts the CPU
+| NOP            | 0xFF | 1    | ?      | No OPeration
+
 
 Tools
 -
