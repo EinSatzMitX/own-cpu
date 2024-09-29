@@ -32,8 +32,8 @@ Instructions
 | CRM REG, #Addr | 0x21 | 4    | ?      | Compares a register with a specified memory address and stores the result in the register (Same as in CRR) (Compare Register with Memory)
 | CRI REG, #Value | 0x22 | 4   | ?      | Compares a register with an immediate value and set status flags accordingly
 | BEQ        | 0x30    | 5     | ?      | Branches to a specified memory address if the last comparison was equal (register holds the value 0x00) (Branch if EQual) 
-| ARV REG, Value | 0x40 | 4    | ?      | Adds an immediate value to a register and stores the result in that register (Add Register and Value)
-| SRV REG, #Value | 0x41 | 4   | ?      | Subtracts an immediate value to a register and stores the result in that register (Subtract Register and Value)
+| ARV REG, Value | 0x40 | 4    | ?      | Adds a signed immediate value to a register and stores the result in that register (Add Register and Value)
+| SRV REG, #Value | 0x41 | 4   | ?      | Subtracts a signed immediate value to a register and stores the result in that register (Subtract Register and Value)
 | ARM REG, #Addr | 0x42 | 4    | ?      | Adds a value in memory to a register and stores the result in the register (Add Register and Memory value) 
 | SRM REG, #Addr | 0x43 | 4    | ?      | Subtracts a value in memory to a register and stores the result in the register (Subtract Register and Memory value) 
 | ARR REGA, REGB | 0x44 | 3    | ?      | Adds the value from register B to register A and stores the result in the register A(Add Register and Register) 
