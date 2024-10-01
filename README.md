@@ -25,7 +25,6 @@ Instructions
 | LDI REG, #Value| 0x00   | 4     | ?      | Loads an immediate value into the specified register (LoaD register Immediate)
 | LDR REG, REG | 0x01 | 3     | ?      | Loads a value from one register into another one (LoaD register value into Register)
 | LDM REG, #Addr | 0x02 | 4     | ?     | Loads a value from a specified memory location into a specified register (LoaD Memory value into register)
-|
 | SLR REG, #Addr  | 0x10 | 4   | ?      | Stores the low byte from a register to memory (Store Low byte from Register)
 | SHR REG, #Addr | 0x11 | 4    | ?      | Stores the high byte from a register to memory (Store High byte from Register)
 | SWR REG, #Addr | 0x12 | 4    | ?      | Stores the entire register value to memory (low byte first) (Store Word from Register)
