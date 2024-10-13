@@ -8,6 +8,14 @@
     - SP (Stack Pointer)
     - SF (Status Flags)
 
+Memory Layout
+---
+
+| Start  | End    | Information
+|--------|--------|------------
+| 0xFFFF | 0xFF00 | Stack (grows downwards)
+
+
 Status Flag Layout
 ---
 
@@ -31,7 +39,17 @@ Instructions
 | CRR REGA, REGB | 0x20 | 3    | ?      | Compares register A with register B and stores the result in register A (0x00 if a == b, 0x01 if a > b, 0x80 if a < b) (Compare Register with Register)
 | CRM REG, #Addr | 0x21 | 4    | ?      | Compares a register with a specified memory address and stores the result in the register (Same as in CRR) (Compare Register with Memory)
 | CRI REG, #Value | 0x22 | 4   | ?      | Compares a register with an immediate value and set status flags accordingly
-| BEQ        | 0x30    | 5     | ?      | Branches to a specified memory address if the last comparison was equal (Zero flag set) (Branch if EQual) 
+| BEQ _label | 0x30    | 3     | ?      | Branches to a specified memory address (label) if the last comparison was equal (Zero flag set) (Branch if EQual) 
+| BNQ _label | 0x31    | 3     | ?      | Branches to a label if the zero flag isn't set (Branch if Not eQual)
+| BLT _label | 0x32    | 3     | ?      | Branches to a label if the L (Less) flag is set (Branch Less Than)
+| BGT _label | 0x33    | 3     | ?      | Branches to a label if the Z AND the L flag are NOT set (Branch Greater Than)
+| BLQ _label | 0x34    | 3     | ?      | Branches to a label if the L OR the Z flag are set (Branch if Less than or eQual)
+| BGQ _label | 0x35    | 3     | ?      | Branches to a label if the L flag is NOT set (Branch if Greater than or eQual)
+| BOC _label | 0x36    | 3     | ?      | Branches if the V flag is NOT set (Branch if Overflow Clear)
+| BOS _label | 0x37    | 3     | ?      | Branches if the V flag is set (Branch if Overflow Set)
+| JMP _label | 0x38    | 3     | ?      | Jumps to a specified label, without any condition
+| JSR _label | 0x39    | 3     | ?      | Jumps to a Subroutine and pushes the return address to the stack
+| RET        | 0x3A    | 1     | ?      | Pops the return address from the stack and sets the program counter to it
 | ASI REG, Value | 0x40 | 4    | ?      | Adds a signed immediate value to a register and stores the result in that register (Add Signed Immediate)
 | SSI REG, #Value | 0x41 | 4   | ?      | Subtracts a signed immediate value to a register and stores the result in that register (Subtract Signed Immediate)
 | ASM REG, #Addr | 0x42 | 4    | ?      | Adds a value in memory to a register and stores the result in the register (Add  Signed Memory value) 
@@ -54,6 +72,14 @@ Instructions
 | ORI REG, #Value| 0x57 | 4    | ?      | Performs logical OR on a register and an immediate value and store it in the register (OR register Immediate)
 | ORM REG, #Addr | 0x58 | 4    | ?      | Performs logical OR on a register and an zero-paged value and store it in the register (OR register Memory)
 | ORR REG, REG   | 0x59 | 3    | ?      | Performs logical OR on two registers and stores it in the first register (OR register Register)
+| LSI REG, #Value| 0x5A | 4    | ?      | Shifts the value from the register to the left by a specified immediate value (Left Shift Immediate) 
+| LSM REG, #Addr | 0x5B | 4    | ?      | Shifts the value from the register to the left by a zero-paged value (Left Shift Memory)  
+| LSR REG, REG   | 0x5C | 3    | ?      | Shifts the value from register a to the left by the value from register b (Left Shift Register) 
+| RSI REG, #Value| 0x5D | 4    | ?      | Shifts the value from the register to the right by a specified immediate value (Right Shift Immediate) 
+| RSM REG, #Addr | 0x5E | 4    | ?      | Shifts the value from the register to the right by a zero-paged value (Right Shift Memory)  
+| RSR REG, REG   | 0x5F | 3    | ?      | Shifts the value from register a to the right by the value from register b (Right Shift Register) 
+| PSH REG        | 0x60 | 2    | ?      | Pushes a register to the stack 
+| POP REG        | 0x61 | 2    | ?      | Pops a value from the stack into the specified register 
 | HLT            | 0xFE | 1    | ?      | Halts the CPU
 | NOP            | 0xFF | 1    | ?      | No OPeration
 
@@ -61,8 +87,8 @@ Instructions
 Tools
 -
 
-- [ ] Emulator (WIP)
-- [ ] Assembler
+- [x] Emulator (WIP)
+- [x] Assembler (WIP)
 - [ ] External ROM
 - [ ] External RAM
 - [ ] External Clock
